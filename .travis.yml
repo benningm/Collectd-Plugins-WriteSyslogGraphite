@@ -10,6 +10,7 @@ before_install:
    - sudo apt-get update
    - sudo apt-get -y install collectd
 install:
+   - export PERL_CPANM_OPT="--sudo"
    - cpanm --quiet --notest --skip-satisfied Dist::Zilla
    - "dzil authordeps          --missing | grep -vP '[^\\w:]' | xargs -n 5 -P 10 cpanm --quiet --notest"
    - "dzil listdeps   --author --missing | grep -vP '[^\\w:]' | cpanm --verbose"
